@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @SpringBootApplication(scanBasePackages = {"com.miaosha"})
 @RestController
-@MapperScan("com.miaosha.dao")
+//扫描mybtis mapper包路径
+@MapperScan(basePackages = "com.miaosha.dao")
+//扫描需要的包，包括一些工具类
+@ComponentScan(basePackages = "com.miaosha.*")
+//开启定时任务
+@EnableScheduling
+//开启异步调用方法
+@EnableAsync
 public class App 
 {
     @Autowired
