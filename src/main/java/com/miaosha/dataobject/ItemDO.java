@@ -1,5 +1,8 @@
 package com.miaosha.dataobject;
 
+/**
+ * @author luther
+ */
 public class ItemDO {
     private Integer id;
 
@@ -59,5 +62,10 @@ public class ItemDO {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl == null ? null : imgUrl.trim();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

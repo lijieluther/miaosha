@@ -2,6 +2,9 @@ package com.miaosha.service;
 
 import com.miaosha.dataobject.QuaLiFiCationsDO;
 
+/**
+ * @author luther
+ */
 public interface RewardService {
     //通过用户ID获取用户对象的方法
     QuaLiFiCationsDO getUserById(Integer id);

@@ -1,5 +1,8 @@
 package com.miaosha.controller.viewobiect;
 
+/**
+ * @author luther
+ */
 public class UserVo {
     private Integer id;
 

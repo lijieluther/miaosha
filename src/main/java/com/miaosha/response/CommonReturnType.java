@@ -1,13 +1,22 @@
 package com.miaosha.response;
 
+/**
+ * @author luther
+ */
 public class CommonReturnType {
-    //表明对应请求的返回处理结果  "success"  或"fail"
+    /**
+     * 表明对应请求的返回处理结果  "success"  或"fail"
+     */
     private String status;
-    //若status==success则返回data数据
-    //若status==fail则返回通用的错误码格式
+    /**
+     * 若status==success则返回data数据
+     * 若status==success则返回data数据
+     */
     private Object data;
 
-    //定义一个通用的创建方法
+    /**
+     * 若status==success则返回data数据
+     */
     public static CommonReturnType create(Object result){
         return CommonReturnType.create(result,"success");
     }

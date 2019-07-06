@@ -1,5 +1,8 @@
 package com.miaosha.dataobject;
 
+/**
+ * @author luther
+ */
 public class RewardDO {
     private Integer id;
 
@@ -69,5 +72,10 @@ public class RewardDO {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime == null ? null : endTime.trim();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

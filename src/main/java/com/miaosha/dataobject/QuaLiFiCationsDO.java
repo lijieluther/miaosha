@@ -1,5 +1,8 @@
 package com.miaosha.dataobject;
 
+/**
+ * @author luther
+ */
 public class QuaLiFiCationsDO {
     private Integer qualificationsId;
 
@@ -39,5 +42,10 @@ public class QuaLiFiCationsDO {
 
     public void setPrizeId(Integer prizeId) {
         this.prizeId = prizeId;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

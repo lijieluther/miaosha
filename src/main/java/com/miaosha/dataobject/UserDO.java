@@ -1,5 +1,8 @@
 package com.miaosha.dataobject;
 
+/**
+ * @author luther
+ */
 public class UserDO {
     private Integer id;
 
@@ -69,5 +72,10 @@ public class UserDO {
 
     public void setThirdPartyId(String thirdPartyId) {
         this.thirdPartyId = thirdPartyId == null ? null : thirdPartyId.trim();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

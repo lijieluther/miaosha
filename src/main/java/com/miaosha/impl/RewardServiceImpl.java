@@ -1,7 +1,7 @@
 package com.miaosha.impl;
 
-import com.miaosha.dao.QuaLiFiCationsDOMapper;
-import com.miaosha.dao.RewardDOMapper;
+import com.miaosha.dao.QuaLiFiCationsDoMapper;
+import com.miaosha.dao.RewardDoMapper;
 import com.miaosha.dataobject.QuaLiFiCationsDO;
 import com.miaosha.dataobject.RewardDO;
 import com.miaosha.error.BusinessException;
@@ -15,13 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.DecimalFormat;
 import java.util.Random;
 
+/**
+ * @author luther
+ */
 @Service
 @EnableTransactionManagement
 public class RewardServiceImpl implements RewardService {
     @Autowired
-    private QuaLiFiCationsDOMapper quaLiFiCationsDOMapper;
+    private QuaLiFiCationsDoMapper quaLiFiCationsDOMapper;
     @Autowired
-    private RewardDOMapper rewardDOMapper;
+    private RewardDoMapper rewardDOMapper;
     @Override
     public QuaLiFiCationsDO getUserById(Integer id) {
         //调用userdomapper获取用户的dataobject

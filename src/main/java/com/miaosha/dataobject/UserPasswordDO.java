@@ -1,5 +1,8 @@
 package com.miaosha.dataobject;
 
+/**
+ * @author luther
+ */
 public class UserPasswordDO {
     private Integer id;
 
@@ -29,5 +32,10 @@ public class UserPasswordDO {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

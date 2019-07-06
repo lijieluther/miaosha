@@ -1,5 +1,9 @@
 package com.miaosha.error;
 
+/**
+ * @author luther
+ */
+
 public enum EmBusinessError implements CommonError{
     //通用错误类型00001
     PARAMETER_VALIDATION_ERROR(100001,"参数不合法"),

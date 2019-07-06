@@ -1,8 +1,8 @@
 package com.miaosha.impl;
 
 import com.alibaba.druid.util.StringUtils;
-import com.miaosha.dao.UserDOMapper;
-import com.miaosha.dao.UserPasswordDOMapper;
+import com.miaosha.dao.UserDoMapper;
+import com.miaosha.dao.UserPasswordDoMapper;
 import com.miaosha.dataobject.UserDO;
 import com.miaosha.dataobject.UserPasswordDO;
 import com.miaosha.error.BusinessException;
@@ -17,12 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.miaosha.validator.ValidationResult;
 import com.miaosha.validator.ValidatorImpl;
 
+/**
+ * @author luther
+ */
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDOMapper userDOMapper;
+    private UserDoMapper userDOMapper;
     @Autowired
-    private UserPasswordDOMapper userPasswordDOMapper;
+    private UserPasswordDoMapper userPasswordDOMapper;
 
     @Autowired
     private ValidatorImpl validator;

@@ -1,5 +1,8 @@
 package com.miaosha.common;
 
+/**
+ * @author luther
+ */
 public class Tool {
     /**
      * 去字符串空格

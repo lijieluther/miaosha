@@ -1,5 +1,8 @@
 package com.miaosha.dataobject;
 
+/**
+ * @author luther
+ */
 public class ItemStockDO {
     private Integer id;
 
@@ -29,5 +32,10 @@ public class ItemStockDO {
 
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

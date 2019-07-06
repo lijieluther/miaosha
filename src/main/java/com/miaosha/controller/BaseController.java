@@ -12,10 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author luther
+ */
 public class BaseController {
     public static final String CONTENT_TYPE_FORMED="application/x-www-form-urlencoded";
 
-    //定义exceptionhandler解决未被controller层吸收的wxception
+    /**
+     *
+     * 定义exceptionhandler解决未被controller层吸收的wxception
+     *
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody

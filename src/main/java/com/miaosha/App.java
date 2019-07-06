@@ -1,11 +1,10 @@
 package com.miaosha;
 
-import com.miaosha.dao.UserDOMapper;
+import com.miaosha.dao.UserDoMapper;
 import com.miaosha.dataobject.UserDO;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -25,12 +24,16 @@ import org.springframework.web.bind.annotation.RestController;
 @ComponentScan(basePackages = "com.miaosha.*")
 //开启定时任务
 @EnableScheduling
-//开启异步调用方法
+/**
+ *
+ * 开启异步调用方法
+ *
+ */
 @EnableAsync
 public class App 
 {
     @Autowired
-    private UserDOMapper userDOMapper;
+    private UserDoMapper userDOMapper;
 
     @RequestMapping("/")
     public String home(){
