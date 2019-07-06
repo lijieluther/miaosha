@@ -23,21 +23,21 @@ import com.miaosha.validator.ValidatorImpl;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDoMapper userDOMapper;
+    private UserDoMapper userDoMapper;
     @Autowired
-    private UserPasswordDoMapper userPasswordDOMapper;
+    private UserPasswordDoMapper userPasswordDoMapper;
 
     @Autowired
     private ValidatorImpl validator;
     @Override
     public UserModel getUserById(Integer id) {
         //调用userdomapper获取用户的dataobject
-        UserDO userDO=userDOMapper.selectByPrimaryKey(id);
+        UserDO userDO=userDoMapper.selectByPrimaryKey(id);
         if(userDO==null){
             return null;
         }
         //调用userDOMapper获取对应的dataobject
-        UserPasswordDO userPasswordDO=userPasswordDOMapper.selectByUserId(userDO.getId());
+        UserPasswordDO userPasswordDO=userPasswordDoMapper.selectByUserId(userDO.getId());
         return convertFromDataObject(userDO,userPasswordDO);
     }
 
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
         //实现model->dataobject方法
         UserDO userDO=convertFromModel(userModel);
         try{
-            userDOMapper.insertSelective(userDO);
+            userDoMapper.insertSelective(userDO);
         }catch (DuplicateKeyException ex){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"手机号已重复注册");
         }
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 
         userModel.setId(userDO.getId());
         UserPasswordDO userPasswordDO=convertPasswordFromModel(userModel);
-        userPasswordDOMapper.insertSelective(userPasswordDO);
+        userPasswordDoMapper.insertSelective(userPasswordDO);
 
         return;
 
@@ -78,11 +78,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessException {
         //通过用户手机号获取用户信息
-        UserDO userDO=userDOMapper.selectByTelphone(telphone);
+        UserDO userDO=userDoMapper.selectByTelphone(telphone);
         if(userDO==null){
             throw new BusinessException(EmBusinessError.USER_LOGIN_FAIL);
         }
-        UserPasswordDO userPasswordDO=userPasswordDOMapper.selectByUserId(userDO.getId());
+        UserPasswordDO userPasswordDO=userPasswordDoMapper.selectByUserId(userDO.getId());
         UserModel userModel=convertFromDataObject(userDO,userPasswordDO);
         //比对用户信息内加密的密码是否和传输进来的密码相匹配
         if(!StringUtils.equals(encrptPassword,userModel.getEncrptPassword())){
