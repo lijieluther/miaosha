@@ -31,6 +31,12 @@ public interface ItemStockDoMapper {
      */
     ItemStockDO selectByPrimaryKey(Integer id);
     /**
+     * 查询
+     * @param itemId
+     * @return Result<ItemStockDO>
+     */
+    ItemStockDO selectByItemId(Integer itemId);
+    /**
      * 更新
      * @param record
      * @return Result<int>

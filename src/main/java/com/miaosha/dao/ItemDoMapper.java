@@ -2,6 +2,8 @@ package com.miaosha.dao;
 
 import com.miaosha.dataobject.ItemDO;
 
+import java.util.List;
+
 /**
  * @author luther
  */
@@ -31,6 +33,11 @@ public interface ItemDoMapper {
      * @return Result<ItemDo>
      */
     ItemDO selectByPrimaryKey(Integer id);
+    /**
+     * 查询
+     * @return Result<ItemDo>
+     */
+    List<ItemDO> listItem();
     /**
      * 更新
      * @param record

@@ -18,6 +18,11 @@
     from item
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="listItem"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from item order by sales desc;
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from item
     where id = #{id,jdbcType=INTEGER}
@@ -30,7 +35,7 @@
       #{description,jdbcType=VARCHAR}, #{sales,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.miaosha.dataobject.ItemDO">
+  <insert id="insertSelective" parameterType="com.miaosha.dataobject.ItemDO" keyProperty="id" useGeneratedKeys="true">
     insert into item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

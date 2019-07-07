@@ -1,4 +1,4 @@
-package com.miaosha.impl;
+package com.miaosha.service.impl;
 
 import com.miaosha.dao.QuaLiFiCationsDoMapper;
 import com.miaosha.dao.RewardDoMapper;

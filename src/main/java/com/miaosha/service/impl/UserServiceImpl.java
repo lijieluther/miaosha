@@ -1,4 +1,4 @@
-package com.miaosha.impl;
+package com.miaosha.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
 import com.miaosha.dao.UserDoMapper;
@@ -9,13 +9,13 @@ import com.miaosha.error.BusinessException;
 import com.miaosha.error.EmBusinessError;
 import com.miaosha.model.UserModel;
 import com.miaosha.service.UserService;
+import com.miaosha.validator.ValidationResult;
+import com.miaosha.validator.ValidatorImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.miaosha.validator.ValidationResult;
-import com.miaosha.validator.ValidatorImpl;
 
 /**
  * @author luther
@@ -47,12 +47,6 @@ public class UserServiceImpl implements UserService {
         if(userModel==null){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
-        /*f(StringUtils.isEmpty(userModel.getName())||
-                userModel.getGender()==null||
-                userModel.getAge()==null||
-                StringUtils.isEmpty(userModel.getTelphone())){
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
-        }*/
         ValidationResult result=validator.validate(userModel);
         if(result.isHasErrors()){
             throw new  BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,result.getErrMsg());
