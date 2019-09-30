@@ -2,6 +2,8 @@ package com.miaosha;
 
 import com.miaosha.dao.UserDoMapper;
 import com.miaosha.dataobject.UserDO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 //扫描需要的包，包括一些工具类
 @ComponentScan(basePackages = "com.miaosha.*")
 //开启定时任务
-@EnableScheduling
+/*@EnableScheduling*/
 /**
  *
  * 开启异步调用方法
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAsync
 public class App 
 {
+
     @Autowired
     private UserDoMapper userDOMapper;
 
@@ -46,8 +49,8 @@ public class App
     }
     public static void main( String[] args )
     {
-
-        System.out.println( "Hello World!" );
+        Logger logger = LogManager.getLogger(App.class);
+        logger.info( "Hello World!!!" );
         SpringApplication.run(App.class,args);
     }
 }
