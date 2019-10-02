@@ -4,12 +4,14 @@ import com.alibaba.druid.util.StringUtils;
 import com.miaosha.controller.viewobiect.UserVo;
 import com.miaosha.error.BusinessException;
 import com.miaosha.error.EmBusinessError;
+import com.miaosha.model.UserListModel;
 import com.miaosha.model.UserModel;
 import com.miaosha.response.CommonReturnType;
 import com.miaosha.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Encoder;
 
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -34,13 +38,11 @@ public class UserController extends BaseController {
     private HttpServletRequest httpServletRequest;
 
     /**
-     *
      * 用户登陆入口
-     *
      */
     @RequestMapping(value = "/loginInit", method = {RequestMethod.GET})
     public String loginInit(){
-        return "login.html";
+        return "/user/userLogin";
     }
     /**
      *
@@ -158,4 +160,20 @@ public class UserController extends BaseController {
         return userVo;
     }
 
+    /**
+     * 使用模板引擎获取用户数据（测试）
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/userList")
+    public String userList(Model model) throws Exception {
+        model.addAttribute("title", "用户列表");
+        model.addAttribute("hello", "Hello, Spring Boot!");
+        List<UserListModel> userList = new ArrayList<>();
+        userList.add(new UserListModel("小明", 25, true));
+        userList.add(new UserListModel("小红", 23, false));
+        model.addAttribute("userList", userList);
+        return "/user/list";
+    }
 }
