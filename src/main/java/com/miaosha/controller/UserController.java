@@ -35,6 +35,15 @@ public class UserController extends BaseController {
 
     /**
      *
+     * 用户登陆入口
+     *
+     */
+    @RequestMapping(value = "/loginInit", method = {RequestMethod.GET})
+    public String loginInit(){
+        return "login.html";
+    }
+    /**
+     *
      * 用户注册接口
      *
      */

@@ -21,6 +21,9 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <log4j.version>2.5</log4j.version>
+    <!--指定themleaft版本-->
+    <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+    <thymeleaf-layout-dialect.version>2.0.5</thymeleaf-layout-dialect.version>
   </properties>
 
   <dependencies>
@@ -89,6 +92,11 @@
           <artifactId>spring-boot-starter-logging</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <!--支持跳转,springboot推荐使用thymeleaf模板引擎-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
   </dependencies>
   <build>
