@@ -2,11 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
     <title>Title</title>
     <script src="../../static/js/jquery.min.js"></script>
     <link rel="stylesheet" href="../../static/assets/global/plugins/bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="../../static/assets/global/css/components.css" type="text/css">
     <link rel="stylesheet" href="../../static/admin/pages/css/login.css" type="text/css">
+    <base href="http://localhost:8090/" />
 </head>
 <body class="login">
 <div class="content">
@@ -50,7 +55,7 @@
             $.ajax({
                 type:"POST",
                 contentType:"application/x-www-form-urlencoded",
-                url:"http://localhost:8090/user/login",
+                url:"user/login",
                 data:{
                     "telphone":$("#telphone").val(),
                     "password":password

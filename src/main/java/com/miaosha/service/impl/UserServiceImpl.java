@@ -1,6 +1,7 @@
 package com.miaosha.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
+import com.miaosha.aop.SystemServiceLog;
 import com.miaosha.dao.UserDoMapper;
 import com.miaosha.dao.UserPasswordDoMapper;
 import com.miaosha.dataobject.UserDO;
@@ -16,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author luther
@@ -69,8 +73,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @SystemServiceLog(description = "校验密码")
     @Override
-    public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessException {
+    public UserModel validateLogin(HttpServletRequest request,String telphone, String encrptPassword) throws BusinessException {
         //通过用户手机号获取用户信息
         UserDO userDO=userDoMapper.selectByTelphone(telphone);
         if(userDO==null){
@@ -82,6 +87,10 @@ public class UserServiceImpl implements UserService {
         if(!StringUtils.equals(encrptPassword,userModel.getEncrptPassword())){
             throw new BusinessException(EmBusinessError.USER_LOGIN_FAIL);
         }
+        //将登陆平整加入到用户登陆成功的session内
+        HttpSession session=request.getSession();
+        session.setAttribute("IS_LOGIN",true);
+        session.setAttribute("LOGIN_USER",userModel);
         return userModel;
     }
 

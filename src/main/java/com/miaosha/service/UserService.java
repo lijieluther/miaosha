@@ -1,7 +1,10 @@
 package com.miaosha.service;
 
+import com.miaosha.aop.SystemServiceLog;
 import com.miaosha.error.BusinessException;
 import com.miaosha.model.UserModel;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author luther
@@ -19,5 +22,5 @@ public interface UserService {
      * @param encrptPassword    用户加密后的密码
      * @throws BusinessException
      */
-    UserModel validateLogin(String telphone,String encrptPassword) throws BusinessException;
+    UserModel validateLogin(HttpServletRequest request,String telphone, String encrptPassword) throws BusinessException;
 }

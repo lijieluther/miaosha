@@ -1,6 +1,7 @@
 package com.miaosha.controller;
 
 import com.alibaba.druid.util.StringUtils;
+import com.miaosha.aop.SystemControllerLog;
 import com.miaosha.controller.viewobiect.UserVo;
 import com.miaosha.error.BusinessException;
 import com.miaosha.error.EmBusinessError;
@@ -40,6 +41,7 @@ public class UserController extends BaseController {
     /**
      * 用户登陆入口
      */
+    @SystemControllerLog(description = "用户登录初始化")
     @RequestMapping(value = "/loginInit", method = {RequestMethod.GET})
     public String loginInit(){
         return "/user/userLogin";
@@ -84,7 +86,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType login(@RequestParam(name = "telphone") String telphone,
-                                  @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                  @RequestParam(name = "password") String password,HttpServletRequest request) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
         //入参校验
         if (org.apache.commons.lang3.StringUtils.isEmpty(telphone) || StringUtils.isEmpty(password)) {
@@ -92,12 +94,7 @@ public class UserController extends BaseController {
         }
 
         //用户登陆服务，用来校验用户登陆是否合法
-        UserModel userModel=userService.validateLogin(telphone,this.EncodeByMd5(password));
-
-        //将登陆平整加入到用户登陆成功的session内
-        this.httpServletRequest.getSession().setAttribute("IS_LOGIN",true);
-        this.httpServletRequest.getSession().setAttribute("LOGIN_USER",userModel);
-
+        UserModel userModel=userService.validateLogin(request,telphone,this.EncodeByMd5(password));
         return CommonReturnType.create(null);
     }
 
