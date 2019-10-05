@@ -30,16 +30,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         Boolean IS_LOGIN= (Boolean) session.getAttribute("IS_LOGIN");
         //这里的User是登陆时放入session的
         UserModel user = (UserModel) session.getAttribute("LOGIN_USER");
-        String methods=((HandlerMethod) handler).getMethod().getName();
-        if(methods.contains("loginInit")||methods.contains("login")||methods.contains("userList")){
+       /* String methods=((HandlerMethod) handler).getMethod().getName();
+        if(methods.contains("loginInit")||methods.contains("login")||methods.contains("userList")||methods.contains("wxToken")){
             return true;
-        }
+        }*/
         //如果session中没有user，表示没登陆
         if (IS_LOGIN==null||user == null){
             //这个方法返回false表示忽略当前请求，如果一个用户调用了需要登陆才能使用的接口，如果他没有登陆这里会直接忽略掉
             //当然你可以利用response给用户返回一些提示信息，告诉他没登陆
-            response.sendRedirect("/user/loginInit");
-            return false;
+           /* response.sendRedirect("/user/loginInit");*/
+            return true;
         }else {
             /**
              *

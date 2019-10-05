@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StepExecutorConfig  implements ApplicationRunner {
     private static final Logger logger = LogManager.getLogger(StepExecutorConfig.class);
-    @Value("${spring.web.loginurl}")
+    @Value("http://localhost/user/userList")
     private String loginUrl;
 
     @Value("${spring.web.googleexcute}")
